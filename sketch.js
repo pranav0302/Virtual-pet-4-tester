@@ -55,7 +55,7 @@ background(46,139,87);
   fill("blue");
   stroke("black");
 
-  
+  currentTime = hour();
   lastFed = database.ref('feedTime')
   lastFed.on("value",function(data){
     feedTime = data.val();
@@ -84,16 +84,16 @@ background(46,139,87);
   //console.log(lastFed) 
  // console.log(lastFed)
 
-  if(feedTime == (lastFed + 1)){
+  if(currentTime == (feedTime + 1)){
     update("Playing");
     foodObj.garden();
     feed.hide();
     addingFood.hide();
     dog.remove();
-  }else if(feedTime == (lastFed + 2)){
+  }else if(currentTime == (feedTime + 2)){
            update("Sleeping");
            foodObj.bedroom();        
-  }else if(feedTime > (lastFed + 2) && feedTime < (lastFed + 4)){
+  }else if(currentTime > (feedTime + 2) && currentTime < (feedTime + 4)){
     update("Bathing")
     foodObj.washroom();
   }else{
